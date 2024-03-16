@@ -38,3 +38,6 @@ mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j4
+
+echo "Installing ORB_SLAM3 ..."
+sudo make install

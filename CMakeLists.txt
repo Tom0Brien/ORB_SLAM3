@@ -202,3 +202,33 @@ if(realsense2_FOUND)
             Examples/Calibration/recorder_realsense_T265.cc)
     target_link_libraries(recorder_realsense_T265 ${PROJECT_NAME})
 endif()
+
+# Installation rules for the library
+install(TARGETS ${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin)
+
+# Installation rules for header files, including both .h and .hpp files
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.h*"
+                       PATTERN "*.hpp*")
+
+# Install Thirdparty headers and libs as needed, including both .h and .hpp files
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/include/
+        DESTINATION include/Thirdparty/DBoW2
+        FILES_MATCHING PATTERN "*.h*"
+                       PATTERN "*.hpp*")
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/include/
+        DESTINATION include/Thirdparty/g2o
+        FILES_MATCHING PATTERN "*.h*"
+                       PATTERN "*.hpp*")
+
+install(FILES ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
+              ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
+        DESTINATION lib)
+
+# Install config files or any other file you need
+# install(FILES ${PROJECT_SOURCE_DIR}/config/your_config_file_here
+#        DESTINATION share/${PROJECT_NAME}/)
